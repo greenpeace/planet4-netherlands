@@ -1,11 +1,9 @@
 {
   "name": "planet4-netherlands/planet4-netherlands",
-  "version": "0.0.1",
+  "version": "0.0.3",
 
   "require": {
     "greenpeace/planet4-child-theme-netherlands" : "0.1",
-    "greenpeace/planet4-master-theme" : "dev-develop",
-    "greenpeace/planet4-plugin-blocks" : "dev-develop"
   },
 
   "scripts": {
