@@ -16,6 +16,7 @@ jobs:
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
       WP_DB_NAME: planet4-nl_wordpress_develop
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless-develop
       WP_TITLE: Greenpeace Netherlands Development
     steps:
       - setup_remote_docker
@@ -65,6 +66,7 @@ jobs:
       GOOGLE_PROJECT_ID: planet-4-151612
       HELM_NAMESPACE: develop
       WP_DB_NAME: planet4-nl_wordpress_develop
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless-develop
       WP_TITLE: Greenpeace Netherlands Development
     steps:
       - attach_workspace:
@@ -95,6 +97,7 @@ jobs:
       HELM_NAMESPACE: netherlands
       HELM_RELEASE: planet4-netherlands-release
       WP_DB_NAME: planet4-nl_wordpress_release
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless-release
       WP_TITLE: Greenpeace Netherlands Release Candidate
     steps:
       - setup_remote_docker
@@ -145,6 +148,7 @@ jobs:
       GOOGLE_PROJECT_ID: planet4-production
       HELM_NAMESPACE: netherlands
       HELM_RELEASE: planet4-netherlands-release
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless-release
       WP_DB_NAME: planet4-nl_wordpress_master
       WP_TITLE: Greenpeace Netherlands Release Candidate
     steps:
@@ -176,7 +180,7 @@ jobs:
       HELM_NAMESPACE: netherlands
       HELM_RELEASE: planet4-netherlands-master
       WP_DB_NAME: planet4-nl_wordpress_master
-      WP_STATELESS_BUCKET: planet4-netherlands
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless
       WP_TITLE: Greenpeace Netherlands
     steps:
       - setup_remote_docker
@@ -228,7 +232,7 @@ jobs:
       HELM_NAMESPACE: netherlands
       HELM_RELEASE: planet4-netherlands-master
       WP_DB_NAME: planet4-nl_wordpress_master
-      WP_STATELESS_BUCKET: planet4-netherlands
+      WP_STATELESS_BUCKET: planet4-netherlands-stateless
       WP_TITLE: Greenpeace Netherlands
     steps:
       - attach_workspace:
