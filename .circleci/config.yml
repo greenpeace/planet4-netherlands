@@ -300,8 +300,18 @@ workflows:
           type: approval
           requires:
             - build-tag
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
 
       - deploy-tag:
           context: org-global
           requires:
             - hold-tag
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
