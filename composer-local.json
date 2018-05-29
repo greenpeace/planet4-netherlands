@@ -1,14 +1,18 @@
 {
-	"name": "planet4-netherlands/planet4-netherlands",
-	"version": "0.0.1",
-
-	"require": {
-		"greenpeace/planet4-child-theme" : "dev-develop",
-		"greenpeace/planet4-master-theme" : "dev-develop",
-		"greenpeace/planet4-plugin-blocks" : "dev-develop"
-	},
-
-	"scripts": {
-		"site:custom" : []
-	}
+  "name": "planet4-netherlands/planet4-netherlands",
+  "version": "0.0.4",
+  "require": {
+    "greenpeace/planet4-child-theme-netherlands": "0.1",
+    "greenpeace/planet4-plugin-migrated-urls": "0.0.1"
+  },
+  "scripts": {
+    "download:plugin-wpimport": "curl -o wp-all-import-pro_4.5.4.zip https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/wp-all-import-pro_4.5.4.zip",
+    "install:plugin-wpimport": "wp plugin install wp-all-import-pro_4.5.4.zip --activate",
+    "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
+    "site:custom": [
+      "@download:plugin-wpimport",
+      "@install:plugin-wpimport",
+      "@core:language"
+    ]
+  }
 }
