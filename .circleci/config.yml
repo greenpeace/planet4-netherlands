@@ -149,7 +149,7 @@ jobs:
       HELM_NAMESPACE: netherlands
       HELM_RELEASE: planet4-netherlands-release
       WP_STATELESS_BUCKET: planet4-netherlands-stateless-release
-      WP_DB_NAME: planet4-nl_wordpress_master
+      WP_DB_NAME: planet4-nl_wordpress_release
       WP_TITLE: Greenpeace Netherlands Release Candidate
     steps:
       - attach_workspace:
