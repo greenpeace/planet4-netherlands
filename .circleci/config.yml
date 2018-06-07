@@ -11,7 +11,7 @@ jobs:
     environment:
       APP_ENVIRONMENT: development
       APP_HOSTNAME: k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: p4-develop-k8s
       CONTAINER_PREFIX: planet4-netherlands
       GOOGLE_PROJECT_ID: planet-4-151612
@@ -62,7 +62,7 @@ jobs:
     environment:
       APP_ENVIRONMENT: development
       APP_HOSTNAME: k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: p4-develop-k8s
       CONTAINER_PREFIX: planet4-netherlands
       GOOGLE_PROJECT_ID: planet-4-151612
@@ -92,7 +92,7 @@ jobs:
     environment:
       APP_ENVIRONMENT: staging
       APP_HOSTNAME: release.k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: planet4-prod
       CONTAINER_PREFIX: planet4-netherlands
       GCLOUD_CLUSTER: planet4-production
@@ -145,7 +145,7 @@ jobs:
     environment:
       APP_ENVIRONMENT: staging
       APP_HOSTNAME: release.k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: planet4-prod
       CONTAINER_PREFIX: planet4-netherlands
       GCLOUD_CLUSTER: planet4-production
@@ -176,7 +176,7 @@ jobs:
     <<: *defaults
     environment:
       APP_HOSTNAME: master.k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: planet4-prod
       CONTAINER_PREFIX: planet4-netherlands
       GCLOUD_CLUSTER: planet4-production
@@ -228,7 +228,7 @@ jobs:
     <<: *defaults
     environment:
       APP_HOSTNAME: master.k8s.p4.greenpeace.org
-      APP_HOSTPATH: netherlands
+      APP_HOSTPATH: nl
       CLOUDSQL_INSTANCE: planet4-prod
       CONTAINER_PREFIX: planet4-netherlands
       GCLOUD_CLUSTER: planet4-production
