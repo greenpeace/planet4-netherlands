@@ -250,7 +250,7 @@ jobs:
       - run:
           name: Deploy new containers
           environment:
-            NEWRELIC_APPNAME: P4 Netherlands
+            NEWRELIC_APPNAME: P4 Netherlands Production
           command: |
             make deploy
 
