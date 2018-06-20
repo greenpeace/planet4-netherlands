@@ -13,7 +13,6 @@
     "site:custom": [
       "@download:plugin-wpimport",
       "@install:plugin-wpimport",
-      "@install:searchwp",
       "@core:language"
     ]
   }
