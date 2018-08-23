@@ -1,8 +1,8 @@
 {
   "name": "planet4-netherlands/planet4-netherlands",
-  "version": "1.25.3",
+  "version": "1.25.5",
   "require": {
-    "greenpeace/planet4-child-theme-netherlands": "1.0.1"
+    "greenpeace/planet4-child-theme-netherlands": "1.0.3"
   },
   "scripts": {
     "download:plugin-wpimport": "curl -o wp-all-import-pro_4.5.4.zip https://raw.githubusercontent.com/greenpeace/planet4-3rdparty-plugins/master/wp-all-import-pro_4.5.4.zip",
