@@ -1,6 +1,5 @@
 {
   "name": "planet4-netherlands/planet4-netherlands",
-  "version": "1.26.0",
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "1.0.3"
   },
