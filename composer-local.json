@@ -1,5 +1,7 @@
 {
   "name": "planet4-netherlands/planet4-netherlands",
+  "description": "Greenpeace P4 Netherlands",
+  "license": "MIT",
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "1.0.6",
     "greenpeace/planet4-gpnl-plugin-blocks": "2.2.14"
