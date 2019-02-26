@@ -1,0 +1,41 @@
+actor: AcceptanceTester
+modules:
+    enabled:
+        - Asserts
+        - WebDriver
+    config:
+        WebDriver:
+            url: 'http://%APP_HOSTNAME%/%APP_HOSTPATH%'
+            host: '%CODECEPTION_SELENIUM_HOST%'
+            browser: chrome
+            port: '%CODECEPTION_SELENIUM_PORT%'
+            restart: false
+            wait: 2
+            window_size: 1920x1080
+            adminUsername: '%CODECEPTION_WP_ADMIN_USERNAME'
+            adminPassword: '%CODECEPTION_WP_ADMIN_PASSWORD'
+            adminPath: '%CODECEPTION_WP_ADMIN_PATH'
+            clear_cookies: true
+extensions:
+    enabled:
+        - Codeception\Extension\Recorder
+    config:
+        Codeception\Extension\Recorder:
+            delete_successful: false
+            module: WPWebDriver
+env:
+    dev:
+        modules:
+            config:
+                WPWebDriver:
+                    url: 'http://www.planet4.test'
+                    host: selenium
+                    port: 4444
+                    adminUsername: 'admin'
+                    adminPassword: 'admin'
+                    adminPath: '/wp-admin/'
+    release:
+        modules:
+            config:
+                WPWebDriver:
+                    url: 'https://release.k8s.p4.greenpeace.org/nl/'
