@@ -22,7 +22,7 @@ extensions:
     config:
         Codeception\Extension\Recorder:
             delete_successful: false
-            module: WPWebDriver
+            module: WebDriver
 env:
     dev:
         modules:
