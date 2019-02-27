@@ -80,15 +80,13 @@ job_definitions:
   test_steps: &test_steps
     working_directory: ~/project
     docker:
-      - image: gcr.io/planet-4-151612/p4-builder:latest
+      - image: gcr.io/planet-4-151612/p4-codeception:latest
       - name: selenium
         image: selenium/standalone-chrome-debug:3
     steps:
       - checkout
       - run: dockerize -wait tcp://selenium:4444
-      # TODO: install codeception in base image
-      - run: composer global require codeception/codeception
-      - run: ~/.composer/vendor/bin/codecept run --xml=junit.xml --html
+      - run: codecept run --xml=junit.xml --html
       - run:
           name: Copy test artifacts
           when: always
