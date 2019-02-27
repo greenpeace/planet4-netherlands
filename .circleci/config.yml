@@ -80,12 +80,13 @@ job_definitions:
   test_steps: &test_steps
     working_directory: ~/project
     docker:
-      - image: gcr.io/planet-4-151612/p4-codeception:latest
+      - image: gcr.io/planet-4-151612/p4-codeception:develop
       - name: selenium
         image: selenium/standalone-chrome-debug:3
     steps:
       - checkout
       - run: dockerize -wait tcp://selenium:4444
+      - run: codeceptionify.sh .
       - run: codecept run --xml=junit.xml --html
       - run:
           name: Copy test artifacts
