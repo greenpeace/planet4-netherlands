@@ -93,7 +93,7 @@ job_definitions:
           when: always
           command: |
             mkdir -p /tmp/artifacts
-            cp -r tests/_output/. /tmp/artifacts
+            cp -r codeception/_output/. /tmp/artifacts
       - store_test_results:
           path: /tmp/artifacts
       - store_artifacts:
