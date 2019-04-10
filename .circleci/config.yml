@@ -20,6 +20,8 @@ job_environments:
     NEWRELIC_APPNAME: P4 netherlands Development
     WP_DB_NAME: planet4-nl_wordpress_develop
     WP_STATELESS_BUCKET: planet4-netherlands-stateless-develop
+    CODECEPTION_SELENIUM_HOST: selenium
+    CODECEPTION_SELENIUM_PORT: 4444
   release_environment: &release_environment
     APP_ENVIRONMENT: staging
     APP_HOSTNAME: release.k8s.p4.greenpeace.org
@@ -74,6 +76,28 @@ job_definitions:
           paths:
             - var
             - src
+
+  test_steps: &test_steps
+    working_directory: ~/project
+    docker:
+      - image: gcr.io/planet-4-151612/p4-codeception:develop
+      - name: selenium
+        image: selenium/standalone-chrome-debug:3
+    steps:
+      - checkout
+      - run: dockerize -wait tcp://selenium:4444
+      - run: codeceptionify.sh .
+      - run: codecept run --xml=junit.xml --html
+      - run:
+          name: Copy test artifacts
+          when: always
+          command: |
+            mkdir -p /tmp/artifacts
+            cp -r codeception/_output/. /tmp/artifacts
+      - store_test_results:
+          path: /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
 
   prepare_release: &prepare_release
     working_directory: /tmp/workspace/src
@@ -168,6 +192,13 @@ jobs:
       <<: *production_environment
     <<: *notify_hold
 
+  test-develop:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *develop_environment
+    <<: *test_steps
+
   deploy-develop:
     <<: *defaults
     environment:
@@ -248,7 +279,9 @@ workflow_definitions:
     context: org-global
     filters:
       branches:
-        only: develop
+        only:
+          - develop
+          - add-tests
   release_common: &release_common
     context: org-global
     filters:
@@ -276,6 +309,10 @@ workflows:
     - build-branch:
         <<: *develop_common
     - deploy-develop:
+        <<: *develop_common
+        requires:
+          - build-branch
+    - test-develop:
         <<: *develop_common
         requires:
           - build-branch
