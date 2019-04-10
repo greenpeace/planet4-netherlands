@@ -306,20 +306,20 @@ workflows:
   version: 2
   develop:
     jobs:
-    # - build-branch:
-    #     <<: *develop_common
-    # - deploy-develop:
-    #     <<: *develop_common
-    #     requires:
-    #       - build-branch
+    - build-branch:
+        <<: *develop_common
+    - deploy-develop:
+        <<: *develop_common
+        requires:
+          - build-branch
     - test-develop:
         <<: *develop_common
-    #     requires:
-    #       - build-branch
-    # - prepare-release:
-    #     <<: *develop_common
-    #     requires:
-    #       - deploy-develop
+        requires:
+          - build-branch
+    - prepare-release:
+        <<: *develop_common
+        requires:
+          - deploy-develop
 
   release:
     jobs:
