@@ -199,6 +199,13 @@ jobs:
       <<: *develop_environment
     <<: *test_steps
 
+  test-release:
+    <<: *defaults
+    environment:
+      <<: *common_environment
+      <<: *release_environment
+    <<: *test_steps
+
   deploy-develop:
     <<: *defaults
     environment:
@@ -315,7 +322,7 @@ workflows:
     - test-develop:
         <<: *develop_common
         requires:
-          - build-branch
+          - deploy-develop
     - prepare-release:
         <<: *develop_common
         requires:
@@ -329,6 +336,10 @@ workflows:
         <<: *release_common
         requires:
           - build-release
+    - test-release:
+        <<: *release_common
+        requires:
+          - deploy-release
     - notify-promote:
         <<: *release_common
         requires:
