@@ -193,14 +193,12 @@ jobs:
     <<: *notify_hold
 
   test-develop:
-    <<: *defaults
     environment:
       <<: *common_environment
       <<: *develop_environment
     <<: *test_steps
 
   test-release:
-    <<: *defaults
     environment:
       <<: *common_environment
       <<: *release_environment
