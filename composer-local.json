@@ -4,7 +4,7 @@
   "license": "MIT",
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "1.0.11",
-    "greenpeace/planet4-gpnl-plugin-blocks": "2.7.2"
+    "greenpeace/planet4-gpnl-plugin-blocks": "2.8.1"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
