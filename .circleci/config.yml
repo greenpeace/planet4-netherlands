@@ -229,8 +229,8 @@ jobs:
   create-sync-sql:
     <<: *defaults
     environment:
-       <<: *common_environment
-       <<: *production_environment
+      <<: *common_environment
+      <<: *production_environment
     working_directory: /tmp/workspace/src
     steps:
       - checkout
@@ -248,8 +248,8 @@ jobs:
   sync-sql-to-release:
     <<: *defaults
     environment:
-       <<: *common_environment
-       <<: *release_environment
+      <<: *common_environment
+      <<: *release_environment
     working_directory: /tmp/workspace/src
     steps:
       - checkout
@@ -265,8 +265,8 @@ jobs:
   notify-sync-auto:
     <<: *defaults
     environment:
-       <<: *common_environment
-       <<: *production_environment
+      <<: *common_environment
+      <<: *production_environment
     working_directory: /tmp/workspace/src
     steps:
       - checkout
@@ -276,8 +276,8 @@ jobs:
   sync-sql-to-develop:
     <<: *defaults
     environment:
-       <<: *common_environment
-       <<: *develop_environment
+      <<: *common_environment
+      <<: *develop_environment
     working_directory: /tmp/workspace/src
     steps:
       - checkout
@@ -302,6 +302,41 @@ jobs:
       - run: pwd
       - run: ls
       - run: ./go.sh
+
+  backstop-history:
+    docker:
+      - image: greenpeaceinternational/planet4-backstop:master
+    environment:
+      <<: *common_environment
+      <<: *develop_environment
+    working_directory: /src
+    steps:
+      - run: ./checkout.sh
+      - run: ./mergescenarios.sh
+      - run: mkdir /app/ -p
+      - run: ./makehistory.sh
+      - persist_to_workspace:
+          root: /app
+          paths:
+            - backstop_data
+
+  backstop-compare:
+    docker:
+      - image: greenpeaceinternational/planet4-backstop:master
+    environment:
+      <<: *common_environment
+      <<: *develop_environment
+    working_directory: /src
+    steps:
+      - run: ./checkout.sh
+      - run: ./mergescenarios.sh
+      - run: mkdir /app/ -p
+      - attach_workspace:
+          at: /app
+      - run: ./makecomparison.sh
+      - store_artifacts:
+          path: /app/backstop_data
+
 
 workflow_definitions:
   develop_common: &develop_common
@@ -333,47 +368,55 @@ workflows:
   version: 2
   develop:
     jobs:
-    - build-branch:
-        <<: *develop_common
-    - deploy-develop:
-        <<: *develop_common
-        requires:
-          - build-branch
-    - test-develop:
-        <<: *develop_common
-        requires:
-          - deploy-develop
-    - prepare-release:
-        <<: *develop_common
-        requires:
-          - deploy-develop
+      - backstop-history:
+          <<: *develop_common
+      - build-branch:
+          <<: *develop_common
+          requires:
+            - backstop-history
+      - deploy-develop:
+          <<: *develop_common
+          requires:
+            - build-branch
+      - test-develop:
+          <<: *develop_common
+          requires:
+            - deploy-develop
+      - backstop-compare:
+          <<: *develop_common
+          requires:
+            - deploy-develop
+      - prepare-release:
+          <<: *develop_common
+          requires:
+            - deploy-develop
 
   release:
     jobs:
-    - build-release:
-        <<: *release_common
-    - deploy-release:
-        <<: *release_common
-        requires:
-          - build-release
-    - test-release:
-        <<: *release_common
-        requires:
-          - deploy-release
-    - notify-promote:
-        <<: *release_common
-        requires:
-          - test-release
-    - hold-promote:
-        <<: *release_common
-        type: approval
-        requires:
-          - test-release
-    - finish-release:
-        <<: *release_common
-        requires:
-          - hold-promote
-          - notify-promote
+      - build-release:
+          <<: *release_common
+      - deploy-release:
+          <<: *release_common
+          requires:
+            - build-release
+      - test-release:
+          <<: *release_common
+          requires:
+            - deploy-release
+      - notify-promote:
+          <<: *release_common
+          requires:
+            - test-release
+      - hold-promote:
+          <<: *release_common
+          type: approval
+          requires:
+            - test-release
+      - finish-release:
+          <<: *release_common
+          requires:
+            - hold-promote
+            - notify-promote
   tag:
     jobs:
       - build-tag:
@@ -385,16 +428,16 @@ workflows:
 
   create-sync-sql:
     jobs:
-    - create-sync-sql:
-        <<: *sync_common
-    - sync-sql-to-release:
-        <<: *sync_common
-        requires:
-          - create-sync-sql
-    - sync-sql-to-develop:
-        <<: *sync_common
-        requires:
-          - sync-sql-to-release
+      - create-sync-sql:
+          <<: *sync_common
+      - sync-sql-to-release:
+          <<: *sync_common
+          requires:
+            - create-sync-sql
+      - sync-sql-to-develop:
+          <<: *sync_common
+          requires:
+            - sync-sql-to-release
 
   create-sync-auto:
     triggers:
