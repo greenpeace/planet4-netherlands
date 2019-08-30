@@ -1,4 +1,15 @@
-version: 2
+version: 2.1
+
+parameters:
+  run_release_init:
+    type: boolean
+    default: true
+  run_release_hold:
+    type: boolean
+    default: false
+  run_release_finish:
+    type: boolean
+    default: false
 
 defaults: &defaults
   docker:
@@ -147,6 +158,37 @@ job_definitions:
           at: /tmp/workspace
       - run: activate-gcloud-account.sh
       - run: BUILD_TAG=build-$(cat /tmp/workspace/var/circle-build-num) make -j2 deploy
+
+  backstop_history_steps: &backstop_history_steps
+    docker:
+      - image: greenpeaceinternational/planet4-backstop:latest
+    working_directory: /src
+    steps:
+      - run: ./checkout.sh
+      - run: ./mergescenarios.sh
+      - run: mkdir /app/ -p
+      - run: ./makehistory.sh
+      - store_artifacts:
+          path: /app/backstop_data
+      - persist_to_workspace:
+          root: /app
+          paths:
+            - backstop_data
+
+  backstop_compare_steps: &backstop_compare_steps
+    docker:
+      - image: greenpeaceinternational/planet4-backstop:latest
+    working_directory: /src
+    steps:
+      - run: ./checkout.sh
+      - run: ./mergescenarios.sh
+      - run: mkdir /app/ -p
+      - attach_workspace:
+          at: /app
+      - run: ./makecomparison.sh
+      - store_artifacts:
+          path: /app/backstop_data
+
 
 jobs:
   build-branch:
@@ -303,39 +345,29 @@ jobs:
       - run: ls
       - run: ./go.sh
 
-  backstop-history:
-    docker:
-      - image: greenpeaceinternational/planet4-backstop:master
+  backstop-history-develop:
     environment:
       <<: *common_environment
       <<: *develop_environment
-    working_directory: /src
-    steps:
-      - run: ./checkout.sh
-      - run: ./mergescenarios.sh
-      - run: mkdir /app/ -p
-      - run: ./makehistory.sh
-      - persist_to_workspace:
-          root: /app
-          paths:
-            - backstop_data
+    <<: *backstop_history_steps
 
-  backstop-compare:
-    docker:
-      - image: greenpeaceinternational/planet4-backstop:master
+  backstop-compare-develop:
     environment:
       <<: *common_environment
       <<: *develop_environment
-    working_directory: /src
-    steps:
-      - run: ./checkout.sh
-      - run: ./mergescenarios.sh
-      - run: mkdir /app/ -p
-      - attach_workspace:
-          at: /app
-      - run: ./makecomparison.sh
-      - store_artifacts:
-          path: /app/backstop_data
+    <<: *backstop_compare_steps
+
+  backstop-history-release:
+    environment:
+      <<: *common_environment
+      <<: *release_environment
+    <<: *backstop_history_steps
+
+  backstop-compare-release:
+    environment:
+      <<: *common_environment
+      <<: *release_environment
+    <<: *backstop_compare_steps
 
 
 workflow_definitions:
@@ -368,12 +400,12 @@ workflows:
   version: 2
   develop:
     jobs:
-      - backstop-history:
+      - backstop-history-develop:
           <<: *develop_common
       - build-branch:
           <<: *develop_common
           requires:
-            - backstop-history
+            - backstop-history-develop
       - deploy-develop:
           <<: *develop_common
           requires:
@@ -382,7 +414,7 @@ workflows:
           <<: *develop_common
           requires:
             - deploy-develop
-      - backstop-compare:
+      - backstop-compare-develop:
           <<: *develop_common
           requires:
             - deploy-develop
@@ -391,10 +423,15 @@ workflows:
           requires:
             - deploy-develop
 
-  release:
+  release-init:
+    when: << pipeline.parameters.run_release_init >>
     jobs:
+      - backstop-history-release:
+          <<: *release_common
       - build-release:
           <<: *release_common
+          requires:
+            - backstop-history-release
       - deploy-release:
           <<: *release_common
           requires:
@@ -403,20 +440,32 @@ workflows:
           <<: *release_common
           requires:
             - deploy-release
-      - notify-promote:
+      - backstop-compare-release:
           <<: *release_common
           requires:
             - test-release
+
+  release-hold-and-finish:
+    when: << pipeline.parameters.run_release_hold >>
+    jobs:
+      - notify-promote:
+          <<: *release_common
       - hold-promote:
           <<: *release_common
           type: approval
-          requires:
-            - test-release
       - finish-release:
           <<: *release_common
           requires:
             - hold-promote
             - notify-promote
+
+  release-finish:
+    when: << pipeline.parameters.run_release_finish >>
+    jobs:
+      - finish-release:
+          <<: *release_common
+
+
   tag:
     jobs:
       - build-tag:
@@ -439,6 +488,18 @@ workflows:
           requires:
             - sync-sql-to-release
 
+  notify-sync-auto:
+    triggers:
+      - schedule:
+          cron: "10 02 28 * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - notify-sync-auto:
+          context: org-global
+
   create-sync-auto:
     triggers:
       - schedule:
@@ -458,18 +519,6 @@ workflows:
           context: org-global
           requires:
             - sync-sql-to-release
-
-  notify-sync-auto:
-    triggers:
-      - schedule:
-          cron: "10 02 28 * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - notify-sync-auto:
-          context: org-global
 
   backup:
     triggers:
