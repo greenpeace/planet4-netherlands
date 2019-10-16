@@ -11,5 +11,11 @@
     "site:custom": [
       "@core:language"
     ]
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks"
+    }
+  ]
 }
