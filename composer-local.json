@@ -5,7 +5,7 @@
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-develop",
     "greenpeace/planet4-gpnl-plugin-blocks": "dev-develop",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-chore/configs"
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
