@@ -1,0 +1,22 @@
+{
+  "scenarios": [
+    {
+      "label": "Planet4 International act page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/acties/",
+      "delay": 3000,
+      "misMatchThreshold": 1.5
+    },
+    {
+      "label": "Planet4 International explore page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/oplossingen/",
+      "delay": 3000,
+      "misMatchThreshold": 1.5
+    },
+    {
+      "label": "Planet4 International privacy and cookies page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/privacystatement/",
+      "delay": 3000,
+      "misMatchThreshold": 1.5
+    }
+  ]
+}
