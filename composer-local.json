@@ -5,15 +5,8 @@
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-develop",
     "greenpeace/planet4-gpnl-plugin-blocks": "dev-develop",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop",
-    "greenpeace/gpnl-database-interface": "dev-develop"
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
   },
-  "repositories": [
-    {
-      "url": "https://github.com/greenpeace/gpnl-database-interface.git",
-      "type": "git"
-    }
-  ],
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
     "site:custom": [
