@@ -23,5 +23,7 @@
     "site:custom": [
       "@core:language"
     ]
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
