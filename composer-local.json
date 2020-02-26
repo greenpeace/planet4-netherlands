@@ -5,7 +5,7 @@
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-develop",
     "greenpeace/planet4-gpnl-plugin-blocks": "dev-develop",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop",
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-feature/apiconnector",
     "greenpeace/gpnl-database-interface": "dev-develop"
   },
   "scripts": {
