@@ -5,7 +5,7 @@
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "4.1.2",
     "greenpeace/planet4-gpnl-plugin-blocks": "2.15.4",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "1.6.5",
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "1.6.7",
     "greenpeace/gpnl-database-interface": "0.0.1"
   },
   "scripts": {
