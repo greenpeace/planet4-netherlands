@@ -4,7 +4,6 @@
   "license": "MIT",
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "4.2.0",
-    "greenpeace/planet4-gpnl-plugin-blocks": "2.15.4",
     "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "1.6.9",
     "greenpeace/gpnl-database-interface": "0.0.2"
   },
