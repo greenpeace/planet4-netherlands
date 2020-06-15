@@ -3,9 +3,9 @@
   "description": "Greenpeace P4 Netherlands",
   "license": "MIT",
   "require": {
-    "greenpeace/planet4-child-theme-netherlands": "dev-develop",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop",
-    "greenpeace/gpnl-database-interface": "dev-develop"
+    "greenpeace/planet4-child-theme-netherlands": "4.4.0",
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "1.7.3",
+    "greenpeace/gpnl-database-interface": "0.0.2"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
