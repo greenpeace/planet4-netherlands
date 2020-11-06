@@ -7,9 +7,11 @@
     "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
   },
   "scripts": {
-    "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
+		"core:language": "wp language core install nl_BE;",
+		"core:language2": "wp language core install fr_BE;",
     "site:custom": [
-      "@core:language"
+      "@core:language",
+      "@core:language2"
     ]
   }
 }
