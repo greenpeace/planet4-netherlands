@@ -106,7 +106,6 @@ job_definitions:
       - run: ./checkout.sh
       - run: ./mergescenarios.sh
       - run: mkdir /app/ -p
-      - run: ./makehistory.sh
       - store_artifacts:
           path: /app/backstop_data
       - persist_to_workspace:
