@@ -487,24 +487,24 @@ workflow_definitions:
 workflows:
   develop:
     jobs:
-      - visualtests-reference-develop:
-          <<: *on_develop_commit
+#      - visualtests-reference-develop:
+#          <<: *on_develop_commit
       - build-develop:
           <<: *on_develop_commit
       - deploy-develop:
           <<: *on_develop_commit
           requires:
             - build-develop
-            - visualtests-reference-develop
+#            - visualtests-reference-develop
             - merge-develop
       - test-develop:
           <<: *on_develop_commit
           requires:
             - deploy-develop
-      - visualtests-compare-develop:
-          <<: *on_develop_commit
-          requires:
-            - deploy-develop
+#      - visualtests-compare-develop:
+#          <<: *on_develop_commit
+#          requires:
+#            - deploy-develop
       - merge-develop:
           <<: *on_develop_commit
   release:
