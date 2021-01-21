@@ -2,25 +2,25 @@
   "scenarios": [
     {
       "label": "Planet4 International act page",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/acties/",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/acties/?passcache",
       "delay": 3000,
       "misMatchThreshold": 1.5
     },
     {
       "label": "Planet4 International explore page",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/oplossingen/",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/oplossingen/?passcache",
       "delay": 3000,
       "misMatchThreshold": 1.5
     },
     {
       "label": "Planet4 International privacy and cookies page",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/privacystatement/",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/privacystatement/?passcache",
       "delay": 3000,
       "misMatchThreshold": 1.5
     },
     {
       "label": "Planet4 Netherlands Demo page",
-      "url": "https://APP_HOSTNAME/APP_HOSTPATH/demo/",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/demo/?passcache",
       "delay": 3000,
       "misMatchThreshold": 1.5
     }
