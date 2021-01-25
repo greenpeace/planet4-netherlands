@@ -3,7 +3,7 @@
   "description": "Greenpeace P4 Netherlands",
   "license": "MIT",
   "require": {
-    "greenpeace/planet4-child-theme-netherlands": "4.5.0",
+    "greenpeace/planet4-child-theme-netherlands": "4.4.18",
     "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "2.0.4"
   },
   "scripts": {
