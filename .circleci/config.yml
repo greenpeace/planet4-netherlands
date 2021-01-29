@@ -18,6 +18,7 @@ defaults: &defaults
 
 orbs:
   slack: circleci/slack@3.4.2
+  slack4: circleci/slack@4.2.0
 job_environments:
   common_environment: &common_environment
     CONTAINER_PREFIX: planet4-netherlands
@@ -141,6 +142,10 @@ job_definitions:
                 fail_only: true
                 channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
+            - slack4/notify:
+                channel: D01640ZRQCC
+                event: fail
+                template: basic_fail_1
 
   build_steps: &build_steps
     working_directory: ~/
@@ -250,6 +255,10 @@ job_definitions:
             - slack/status:
                 channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
+            - slack4/notify:
+                channel: D01640ZRQCC
+                event: fail
+                template: basic_fail_1
   finish_staging_steps: &finish_staging_steps
     working_directory: ~/
     steps:
