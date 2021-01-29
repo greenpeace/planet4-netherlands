@@ -370,7 +370,7 @@ jobs:
       <<: *common_environment
       <<: *release_environment
     <<: *finish_staging_steps
-  
+
   rollback-staging:
     <<: *defaults
     environment:
@@ -504,7 +504,7 @@ workflows:
           <<: *on_develop_commit
           requires:
             - build-develop
-#            - visualtests-reference-develop
+            - visualtests-reference-develop
             - merge-develop
       - test-develop:
           <<: *on_develop_commit
