@@ -134,6 +134,10 @@ job_definitions:
       - run: ./makecomparison.sh
       - store_artifacts:
           path: /app/backstop_data
+      - slack4/notify:
+          channel: D01640ZRQCC
+          event: fail
+          template: basic_fail_1
       - when:
           condition: << parameters.notify >>
           steps:
@@ -142,10 +146,6 @@ job_definitions:
                 fail_only: true
                 channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
-            - slack4/notify:
-                channel: D01640ZRQCC
-                event: fail
-                template: basic_fail_1
 
   build_steps: &build_steps
     working_directory: ~/
@@ -242,6 +242,10 @@ job_definitions:
             fi
       - approve_job:
           job_name: instance-ready
+      - slack4/notify:
+          channel: D01640ZRQCC
+          event: fail
+          template: basic_fail_1
       - when:
           condition: << parameters.is_prod >>
           steps:
@@ -255,10 +259,7 @@ job_definitions:
             - slack/status:
                 channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
-            - slack4/notify:
-                channel: D01640ZRQCC
-                event: fail
-                template: basic_fail_1
+
   finish_staging_steps: &finish_staging_steps
     working_directory: ~/
     steps:
