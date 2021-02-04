@@ -144,7 +144,7 @@ job_definitions:
             # Notify p4-activity-ci
             - slack/status:
                 fail_only: true
-                channel: C01M03WFPGB
+                channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
 
   build_steps: &build_steps
