@@ -135,7 +135,7 @@ job_definitions:
       - store_artifacts:
           path: /app/backstop_data
       - slack4/notify:
-          channel: G01C5418D4K
+          channel: C01M03WFPGB # public channel
           event: fail
           template: basic_fail_1
       - when:
@@ -144,7 +144,7 @@ job_definitions:
             # Notify p4-activity-ci
             - slack/status:
                 fail_only: true
-                channel: C015MQGG3KQ
+                channel: C01M03WFPGB
                 webhook: ${SLACK_NRO_WEBHOOK}
 
   build_steps: &build_steps
@@ -243,7 +243,7 @@ job_definitions:
       - approve_job:
           job_name: instance-ready
       - slack4/notify:
-          channel: G01C5418D4K
+          channel: G01C5418D4K # private channel
           event: fail
           template: basic_fail_1
       - when:
