@@ -18,6 +18,7 @@ defaults: &defaults
 
 orbs:
   slack: circleci/slack@3.4.2
+  slack4: circleci/slack@4.2.0
 job_environments:
   common_environment: &common_environment
     CONTAINER_PREFIX: planet4-netherlands
@@ -133,6 +134,10 @@ job_definitions:
       - run: ./makecomparison.sh
       - store_artifacts:
           path: /app/backstop_data
+      - slack4/notify:
+          channel: C01M03WFPGB # public channel
+          event: fail
+          template: basic_fail_1
       - when:
           condition: << parameters.notify >>
           steps:
@@ -237,6 +242,10 @@ job_definitions:
             fi
       - approve_job:
           job_name: instance-ready
+      - slack4/notify:
+          channel: G01C5418D4K # private channel
+          event: fail
+          template: basic_fail_1
       - when:
           condition: << parameters.is_prod >>
           steps:
@@ -250,6 +259,7 @@ job_definitions:
             - slack/status:
                 channel: C015MQGG3KQ
                 webhook: ${SLACK_NRO_WEBHOOK}
+
   finish_staging_steps: &finish_staging_steps
     working_directory: ~/
     steps:
@@ -361,7 +371,7 @@ jobs:
       <<: *common_environment
       <<: *release_environment
     <<: *finish_staging_steps
-  
+
   rollback-staging:
     <<: *defaults
     environment:
@@ -487,24 +497,24 @@ workflow_definitions:
 workflows:
   develop:
     jobs:
-#      - visualtests-reference-develop:
-#          <<: *on_develop_commit
+      - visualtests-reference-develop:
+          <<: *on_develop_commit
       - build-develop:
           <<: *on_develop_commit
       - deploy-develop:
           <<: *on_develop_commit
           requires:
             - build-develop
-#            - visualtests-reference-develop
+            - visualtests-reference-develop
             - merge-develop
       - test-develop:
           <<: *on_develop_commit
           requires:
             - deploy-develop
-#      - visualtests-compare-develop:
-#          <<: *on_develop_commit
-#          requires:
-#            - deploy-develop
+      - visualtests-compare-develop:
+          <<: *on_develop_commit
+          requires:
+            - deploy-develop
       - merge-develop:
           <<: *on_develop_commit
   release:
