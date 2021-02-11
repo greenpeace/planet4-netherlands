@@ -16,7 +16,8 @@
       "label": "Planet4 International privacy and cookies page",
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/privacystatement/?passcache",
       "delay": 3000,
-      "misMatchThreshold": 1.5
+      "misMatchThreshold": 1.5,
+      "hoverSelector": ".btn.btn-donate.dropdown-toggle"
     },
     {
       "label": "Planet4 Netherlands Demo page",
