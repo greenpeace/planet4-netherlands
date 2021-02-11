@@ -24,6 +24,13 @@
       "url": "https://APP_HOSTNAME/APP_HOSTPATH/demo/?passcache",
       "delay": 3000,
       "misMatchThreshold": 1.5
+    },
+    {
+      "label": "Planet4 Netherlands News page",
+      "url": "https://APP_HOSTNAME/APP_HOSTPATH/nieuws/?passcache",
+      "delay": 3000,
+      "misMatchThreshold": 1.5
     }
+
   ]
 }
