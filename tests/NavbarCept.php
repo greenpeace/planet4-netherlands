@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('check navbar has right design');
+$I->amGoingTo('check navbar has right design');
 
 $I->amOnPage('/');
 
