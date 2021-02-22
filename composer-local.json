@@ -1,15 +1,15 @@
 {
-  "name": "planet4-netherlands/planet4-netherlands",
-  "description": "Greenpeace P4 Netherlands",
-  "license": "MIT",
-  "require": {
-    "greenpeace/planet4-child-theme-netherlands": "dev-feature/PoC/structured_data",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
-  },
-  "scripts": {
-    "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
-    "site:custom": [
-      "@core:language"
-    ]
-  }
+    "name": "planet4-netherlands/planet4-netherlands",
+    "description": "Greenpeace P4 Netherlands",
+    "license": "MIT",
+    "require": {
+        "greenpeace/planet4-child-theme-netherlands": "dev-feature/PoC/structured_data",
+        "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
+    },
+    "scripts": {
+        "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
+        "site:custom": [
+            "@core:language"
+        ]
+    }
 }
