@@ -1,6 +1,6 @@
 {
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-develop",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-feature/integrated_ab_tests"
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "dev-develop"
   }
 }
