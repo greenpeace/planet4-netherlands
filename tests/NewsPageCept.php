@@ -2,7 +2,7 @@
 $I = new AcceptanceTester($scenario);
 $I->amGoingTo('check news pagination works');
 
-$I->amOnPage('/nieuws');
+$I->amOnPage('/nieuws?nocache');
 $I->scrollTo(['css' => '.pagination li.page-item:nth-child(4) > a'], 20, 50);
 $I->wait(1);
 $I->click('.pagination li.page-item:nth-child(4) > a');
