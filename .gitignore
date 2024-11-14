@@ -1,9 +1,0 @@
-
-\.idea/workspace\.xml
-
-# Codeception setup is not part of repo
-# these files are added by the codeceptionify.sh script
-# when needed in local dev and in ci
-codeception.yml
-codeception
-tests.suite.yml
