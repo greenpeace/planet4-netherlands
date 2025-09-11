@@ -14,11 +14,11 @@
     "install:plugin-cs-forms":"wp plugin install --activate https://update-v1.campaignsuite.nl/forms/campaignsuite-forms-1.13.1.zip",
     "install:plugin-cs-gp":"wp plugin install --activate https://update-v1.campaignsuite.nl/greenpeace/campaignsuite-greenpeace-addon.zip",
     "site:custom": [
-      "@core:language",
       "@install:plugin-yoast",
       "@install:plugin-cs-core",
       "@install:plugin-cs-forms",
-      "@install:plugin-cs-gp"
+      "@install:plugin-cs-gp",
+      "@core:language"
     ]
   }
 }
