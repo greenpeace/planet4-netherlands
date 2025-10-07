@@ -1,6 +1,7 @@
 {
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "5.*",
-    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "2.*"
+    "greenpeace/planet4-gpnl-plugin-gutenberg-blocks": "2.*",
+    "greenpeace/planet4-master-theme": "v1.346.0"
   }
 }
