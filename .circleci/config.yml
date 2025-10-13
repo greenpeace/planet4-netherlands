@@ -27,6 +27,7 @@ job_environments:
     CONTAINER_PREFIX: planet4-netherlands
     APP_HOSTPATH: nl
     WP_DB_NAME_PREFIX: planet4-nl_wordpress
+    BASE_RELEASE: v25.18.1
   develop_environment: &develop_environment
     APP_ENVIRONMENT: development
     APP_HOSTNAME: www-dev.greenpeace.org
