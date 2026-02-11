@@ -3,7 +3,6 @@
   "description": "Greenpeace P4 Netherlands",
   "license": "MIT",
   "require": {
-    "greenpeace/planet4-master-theme" : "dev-PLANET-8095_designs-tokens-update-v1",
     "greenpeace/planet4-child-theme-netherlands": "dev-main",
     "wpackagist-plugin/wordpress-seo": "23.9.*"
   },
