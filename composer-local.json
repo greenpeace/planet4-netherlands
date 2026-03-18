@@ -5,7 +5,7 @@
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-main",
     "wpackagist-plugin/wordpress-seo": "27.2.*"
-    "wpackagist-plugin/seo-by-rank-math": "^1.0"
+    "wpackagist-plugin/seo-by-rank-math": "1.0.266"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
