@@ -4,6 +4,9 @@
   "license": "MIT",
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-main",
+    "plugins/gravityformsstripe": "*",
+    "plugins/gravityformssurvey": "*",
+    "plugins/gravityformssalesforce": "*",
     "wpackagist-plugin/wordpress-seo": "27.2.*",
     "wpackagist-plugin/seo-by-rank-math": "^1.0"
   },
