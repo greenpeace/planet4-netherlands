@@ -8,7 +8,7 @@
     "plugins/gravityformssurvey": "*",
     "plugins/gravityformssalesforce": "*",
     "wpackagist-plugin/seo-by-rank-math": "^1.0",
-    "guzzlehttp/psr7": "2.10.1"
+    "greenpeace/planet4-gpch-plugin-optimize": "*"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
