@@ -8,8 +8,8 @@
     "plugins/gravityformssurvey": "*",
     "plugins/gravityformssalesforce": "*",
     "wpackagist-plugin/seo-by-rank-math": "^1.0",
-    "greenpeace/planet4-gpch-plugin-optimize": "*"
-    "wpackagist-plugin/woocommerce":"11.1.0-beta.2"
+    "greenpeace/planet4-gpch-plugin-optimize": "*",
+    "wpackagist-plugin/woocommerce": "11.1.0-beta.2"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
