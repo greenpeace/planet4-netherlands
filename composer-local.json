@@ -10,8 +10,8 @@
     "wpackagist-plugin/seo-by-rank-math": "^1.0",
     "greenpeace/planet4-gpch-plugin-optimize": "*",
     "wpackagist-plugin/woocommerce": "11.1.0-beta.2",
-    "greenpeace/seo-internal-linker": "*",
-    "greenpeace/googlenews-main": "*"
+    "greenpeace/planet4-googlenews": "*",
+    "greenpeace/planet4-seo-internal-linker": "*"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
