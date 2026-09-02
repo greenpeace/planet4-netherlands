@@ -2,12 +2,6 @@
   "name": "planet4-netherlands/planet4-netherlands",
   "description": "Greenpeace P4 Netherlands",
   "license": "MIT",
-  "repositories": [
-    {
-      "type": "artifact",
-      "url": "artifacts/"
-    }
-  ],
   "require": {
     "greenpeace/planet4-child-theme-netherlands": "dev-main",
     "plugins/gravityformsstripe": "*",
@@ -16,8 +10,6 @@
     "wpackagist-plugin/seo-by-rank-math": "^1.0",
     "greenpeace/planet4-gpch-plugin-optimize": "*",
     "wpackagist-plugin/woocommerce": "11.1.0-beta.2",
-    "greenpeace/planet4-googlenews": "*",
-    "greenpeace/planet4-seo-internal-linker": "*"
   },
   "scripts": {
     "core:language": "wp language core install nl_NL; wp language core activate nl_NL",
